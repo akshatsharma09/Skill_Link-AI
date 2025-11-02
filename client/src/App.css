@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  color: #f1f5f9;
 }
 
 .logo {
@@ -39,12 +40,12 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, #4f46e5, #06b6d4);
+  background-image: linear-gradient(to right, #64748b, #475569);
 }
 
 /* Custom components */
 .auth-card {
-  @apply bg-white rounded-lg shadow-xl p-8;
+  @apply bg-dark-800 rounded-lg shadow-xl p-8 border border-dark-700;
   max-width: 400px;
   width: 90%;
 }
@@ -59,20 +60,20 @@
 }
 
 .form-label {
-  @apply block text-sm font-medium text-gray-700 mb-1;
+  @apply block text-sm font-medium text-dark-300 mb-1;
 }
 
 .form-input {
-  @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
+  @apply block w-full rounded-md border-dark-600 bg-dark-700 text-dark-100 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm;
 }
 
 /* Card styles */
 .card {
-  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  @apply bg-dark-800 rounded-lg shadow-sm border border-dark-700 p-6;
 }
 
 .card-hover {
-  @apply transition-all duration-200 ease-in-out hover:shadow-md hover:border-gray-300;
+  @apply transition-all duration-200 ease-in-out hover:shadow-md hover:border-dark-600;
 }
 
 /* Badge styles */
@@ -81,29 +82,29 @@
 }
 
 .badge-primary {
-  @apply bg-indigo-100 text-indigo-800;
+  @apply bg-primary-800 text-primary-200;
 }
 
 .badge-success {
-  @apply bg-green-100 text-green-800;
+  @apply bg-green-800 text-green-200;
 }
 
 .badge-warning {
-  @apply bg-yellow-100 text-yellow-800;
+  @apply bg-yellow-800 text-yellow-200;
 }
 
 .badge-danger {
-  @apply bg-red-100 text-red-800;
+  @apply bg-red-800 text-red-200;
 }
 
 /* Loading states */
 .loading-spinner {
-  @apply animate-spin rounded-full border-4 border-gray-200;
-  border-top-color: #6366f1;
+  @apply animate-spin rounded-full border-4 border-dark-700;
+  border-top-color: #64748b;
   width: 2rem;
   height: 2rem;
 }
 
 .loading-overlay {
-  @apply fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50;
+  @apply fixed inset-0 bg-dark-900 bg-opacity-75 flex items-center justify-center z-50;
 }

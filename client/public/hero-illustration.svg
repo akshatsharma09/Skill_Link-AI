@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="People illustration">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="#0f172a" rx="24" />
+  <g transform="translate(80,80)" fill="url(#g)">
+    <rect x="0" y="0" width="420" height="420" rx="24" opacity="0.12" />
+    <circle cx="600" cy="200" r="100" opacity="0.18" />
+  </g>
+  <g transform="translate(180,140)" fill="#FFFFFF" opacity="0.95">
+    <rect x="0" y="0" width="220" height="120" rx="12" fill="#111827" opacity="0.85" />
+    <rect x="260" y="0" width="220" height="120" rx="12" fill="#0f172a" opacity="0.6" />
+    <g transform="translate(0,150)">
+      <circle cx="60" cy="40" r="40" fill="#f3f4f6" />
+      <rect x="130" y="10" width="260" height="60" rx="12" fill="#111827" opacity="0.85" />
+    </g>
+  </g>
+  <text x="460" y="460" fill="#94a3b8" font-size="20">Illustrative artwork for SkillLink AI hero</text>
+</svg>

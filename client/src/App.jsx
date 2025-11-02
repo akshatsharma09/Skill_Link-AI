@@ -21,6 +21,8 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="flex flex-col min-h-screen">
+          {/* Debug badge to confirm App is rendering in the browser (remove later) */}
+          <div className="fixed top-4 left-4 z-50 bg-red-600 text-white px-3 py-1 rounded-md text-xs font-semibold">DEV</div>
           <Navbar />
           <main className="flex-grow container mx-auto px-4 py-8">
             <Routes>

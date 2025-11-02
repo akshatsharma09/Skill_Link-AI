@@ -61,7 +61,7 @@ const Dashboard = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
-          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+          <h2 className="text-2xl font-bold leading-7 text-dark-100 sm:truncate sm:text-3xl sm:tracking-tight">
             Welcome back, {user.profile?.firstName || 'User'}!
           </h2>
         </div>
@@ -69,7 +69,7 @@ const Dashboard = () => {
           {user.role === 'business' && (
             <button
               type="button"
-              className="ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="ml-3 inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
             >
               Post a New Job
             </button>
@@ -78,24 +78,24 @@ const Dashboard = () => {
       </div>
 
       <div className="mt-8">
-        <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">
+        <h3 className="text-lg font-medium leading-6 text-dark-100 mb-4">
           {user.role === 'worker' ? 'Matched Jobs' : 'Your Posted Jobs'}
         </h3>
-        
+
         <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {jobs.map((job) => (
             <div
               key={job._id}
-              className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex flex-col hover:border-gray-400"
+              className="relative rounded-lg border border-dark-600 bg-dark-800 px-6 py-5 shadow-sm flex flex-col hover:border-dark-500"
             >
               <div className="flex-1">
-                <h4 className="text-lg font-semibold text-gray-900">{job.title}</h4>
-                <p className="mt-1 text-sm text-gray-500">{job.description}</p>
+                <h4 className="text-lg font-semibold text-dark-100">{job.title}</h4>
+                <p className="mt-1 text-sm text-dark-300">{job.description}</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {job.skillsRequired.map((skill) => (
                     <span
                       key={skill}
-                      className="inline-flex items-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-xs font-medium text-indigo-800"
+                      className="inline-flex items-center rounded-full bg-primary-800 px-2.5 py-0.5 text-xs font-medium text-primary-200"
                     >
                       {skill}
                     </span>
@@ -103,12 +103,12 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="mt-4 flex justify-between items-center">
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-dark-300">
                   {job.location.city}, {job.budget.amount} {job.budget.currency}
                 </div>
                 <button
                   type="button"
-                  className="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-indigo-600 shadow-sm ring-1 ring-inset ring-indigo-300 hover:bg-indigo-50"
+                  className="inline-flex items-center rounded-md bg-dark-700 px-2.5 py-1.5 text-sm font-semibold text-primary-400 shadow-sm ring-1 ring-inset ring-dark-600 hover:bg-dark-600"
                 >
                   View Details
                 </button>
@@ -119,8 +119,8 @@ const Dashboard = () => {
 
         {jobs.length === 0 && (
           <div className="text-center py-12">
-            <h3 className="mt-2 text-sm font-semibold text-gray-900">No jobs found</h3>
-            <p className="mt-1 text-sm text-gray-500">
+            <h3 className="mt-2 text-sm font-semibold text-dark-100">No jobs found</h3>
+            <p className="mt-1 text-sm text-dark-300">
               {user.role === 'worker'
                 ? "We'll notify you when new matching jobs are posted."
                 : "Get started by posting your first job."}

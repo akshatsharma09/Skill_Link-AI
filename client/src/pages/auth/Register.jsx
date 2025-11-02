@@ -12,15 +12,11 @@ const Register = () => {
     role: 'worker', // or 'business'
     firstName: '',
     lastName: '',
-    phone: '',
-    address: '',
-    city: '',
-    state: '',
-    country: '',
-    pincode: '',
   });
 
   const [validationError, setValidationError] = useState('');
+  const [skills, setSkills] = useState([]);
+  const [newSkill, setNewSkill] = useState('');
 
   useEffect(() => {
     // Reset validation error when form data changes
@@ -32,6 +28,20 @@ const Register = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+
+
+  const handleAddSkill = (e) => {
+    e.preventDefault();
+    const s = newSkill.trim();
+    if (!s) return;
+    if (!skills.includes(s)) setSkills((prev) => [...prev, s]);
+    setNewSkill('');
+  };
+
+  const handleRemoveSkill = (s) => {
+    setSkills((prev) => prev.filter((x) => x !== s));
   };
 
   const handleSubmit = async (e) => {
@@ -57,15 +67,7 @@ const Register = () => {
         profile: {
           firstName: formData.firstName,
           lastName: formData.lastName,
-          phone: formData.phone,
-          location: {
-            address: formData.address,
-            city: formData.city,
-            state: formData.state,
-            country: formData.country,
-            pincode: formData.pincode,
-            coordinates: [0, 0], // This should be populated using a geocoding service
-          },
+          skills: skills,
         },
       };
 
@@ -77,26 +79,27 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-dark-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <img src="/hero-illustration.svg" alt="SkillLink AI Illustration" className="mx-auto h-24 w-24 mb-4" />
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-dark-100">
           Create your account
         </h2>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-dark-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-dark-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Role Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-dark-300">
                 I am a
               </label>
               <select
                 name="role"
                 value={formData.role}
                 onChange={handleChange}
-                className="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full py-2 px-3 border border-dark-600 bg-dark-700 text-dark-100 rounded-md shadow-sm placeholder-dark-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
               >
                 <option value="worker">Skilled Worker</option>
                 <option value="business">Business Owner</option>
@@ -105,7 +108,7 @@ const Register = () => {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-dark-300">
                 Email address
               </label>
               <input
@@ -114,13 +117,13 @@ const Register = () => {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full px-3 py-2 border border-dark-600 bg-dark-700 text-dark-100 rounded-md shadow-sm placeholder-dark-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
               />
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-dark-300">
                 Password
               </label>
               <input
@@ -129,13 +132,13 @@ const Register = () => {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full px-3 py-2 border border-dark-600 bg-dark-700 text-dark-100 rounded-md shadow-sm placeholder-dark-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
               />
             </div>
 
             {/* Confirm Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-dark-300">
                 Confirm Password
               </label>
               <input
@@ -144,13 +147,13 @@ const Register = () => {
                 required
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full px-3 py-2 border border-dark-600 bg-dark-700 text-dark-100 rounded-md shadow-sm placeholder-dark-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
               />
             </div>
 
             {/* First Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-dark-300">
                 First Name
               </label>
               <input
@@ -159,13 +162,13 @@ const Register = () => {
                 required
                 value={formData.firstName}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full px-3 py-2 border border-dark-600 bg-dark-700 text-dark-100 rounded-md shadow-sm placeholder-dark-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
               />
             </div>
 
             {/* Last Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-dark-300">
                 Last Name
               </label>
               <input
@@ -174,96 +177,29 @@ const Register = () => {
                 required
                 value={formData.lastName}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className="mt-1 block w-full px-3 py-2 border border-dark-600 bg-dark-700 text-dark-100 rounded-md shadow-sm placeholder-dark-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
               />
             </div>
 
-            {/* Phone */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-
-            {/* Address */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Address
-              </label>
-              <input
-                type="text"
-                name="address"
-                required
-                value={formData.address}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-
-            {/* City, State, Country */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  City
-                </label>
+            {/* Skills tags */}
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-dark-300">Skills</label>
+              <div className="mt-2 flex gap-2">
                 <input
-                  type="text"
-                  name="city"
-                  required
-                  value={formData.city}
-                  onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  value={newSkill}
+                  onChange={(e) => setNewSkill(e.target.value)}
+                  placeholder="Add a skill"
+                  className="form-input flex-grow px-3 py-2 border border-dark-600 bg-dark-700 text-dark-100 rounded-md shadow-sm placeholder-dark-400 focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                 />
+                <button onClick={handleAddSkill} className="px-3 py-1 bg-primary-600 text-white rounded-md hover:bg-primary-500">Add</button>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  State
-                </label>
-                <input
-                  type="text"
-                  name="state"
-                  required
-                  value={formData.state}
-                  onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                />
-              </div>
-            </div>
-
-            {/* Country and Pincode */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Country
-                </label>
-                <input
-                  type="text"
-                  name="country"
-                  required
-                  value={formData.country}
-                  onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Pincode
-                </label>
-                <input
-                  type="text"
-                  name="pincode"
-                  required
-                  value={formData.pincode}
-                  onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                />
+              <div className="mt-2 flex flex-wrap gap-2">
+                {skills.map((s) => (
+                  <span key={s} className="inline-flex items-center px-3 py-1 rounded-full bg-dark-600 text-dark-100 text-sm">
+                    {s}
+                    <button type="button" onClick={() => handleRemoveSkill(s)} className="ml-2 text-red-500">×</button>
+                  </span>
+                ))}
               </div>
             </div>
 
