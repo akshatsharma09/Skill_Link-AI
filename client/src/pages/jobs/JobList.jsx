@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../api';
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -21,7 +21,7 @@ const JobList = () => {
     try {
       setIsLoading(true);
       const queryParams = new URLSearchParams(filters).toString();
-      const response = await axios.get(`/api/jobs?${queryParams}`);
+      const response = await api.get(`/jobs?${queryParams}`);
       setJobs(response.data);
       setError(null);
     } catch (err) {

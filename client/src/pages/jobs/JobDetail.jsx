@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
+import api from '../../api';
 
 const JobDetail = () => {
   const { id } = useParams();
+  const { user } = useAuth();
   const [job, setJob] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [applying, setApplying] = useState(false);
 
   useEffect(() => {
     const fetchJob = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get(`/api/jobs/${id}`);
+        const res = await api.get(`/jobs/${id}`);
         setJob(res.data);
         setError(null);
       } catch (err) {
@@ -24,6 +27,23 @@ const JobDetail = () => {
 
     if (id) fetchJob();
   }, [id]);
+
+  const handleApply = async (jobId) => {
+    if (!user) {
+      alert('Please login to apply for jobs');
+      return;
+    }
+
+    try {
+      setApplying(true);
+      await api.post(`/jobs/${jobId}/apply`);
+      alert('Application submitted successfully!');
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to apply for job');
+    } finally {
+      setApplying(false);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -90,7 +110,13 @@ const JobDetail = () => {
 
           <div className="flex gap-3">
             <Link to={`/workers/${job.client?._id}`} className="px-4 py-2 bg-gray-100 rounded-md text-sm hover:bg-gray-200">View Client</Link>
-            <button className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700">Apply</button>
+            <button
+              onClick={() => handleApply(job._id)}
+              disabled={applying}
+              className="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm hover:bg-indigo-700 disabled:opacity-50"
+            >
+              {applying ? 'Applying...' : 'Apply'}
+            </button>
           </div>
         </div>
       </div>

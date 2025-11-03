@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import api from "../api";
 
@@ -67,12 +68,12 @@ const Dashboard = () => {
         </div>
         <div className="mt-4 flex md:ml-4 md:mt-0">
           {user.role === 'business' && (
-            <button
-              type="button"
+            <Link
+              to="/jobs/create"
               className="ml-3 inline-flex items-center rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
             >
               Post a New Job
-            </button>
+            </Link>
           )}
         </div>
       </div>
@@ -106,12 +107,12 @@ const Dashboard = () => {
                 <div className="text-sm text-dark-300">
                   {job.location.city}, {job.budget.amount} {job.budget.currency}
                 </div>
-                <button
-                  type="button"
+                <Link
+                  to={`/jobs/${job._id}`}
                   className="inline-flex items-center rounded-md bg-dark-700 px-2.5 py-1.5 text-sm font-semibold text-primary-400 shadow-sm ring-1 ring-inset ring-dark-600 hover:bg-dark-600"
                 >
                   View Details
-                </button>
+                </Link>
               </div>
             </div>
           ))}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 
 const Profile = () => {
   const { user, updateUser } = useAuth();
@@ -89,7 +89,7 @@ const Profile = () => {
     
     try {
       setIsLoading(true);
-      const response = await axios.put('/api/users/profile', formData);
+      const response = await api.put('/users/profile', formData);
       updateUser(response.data);
       setSuccessMessage('Profile updated successfully!');
     } catch (err) {

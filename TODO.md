@@ -1,20 +1,10 @@
-# TODO List for Project Updates
-
-## Add Relevant Images
-- [ ] Create or add feature icons for AI Matching, Verified Profiles, and Secure Payments in client/public/ or client/src/assets/
-- [ ] Update Home.jsx to use specific icons for each feature instead of generic ArrowRightIcon
-- [ ] Add any background images or placeholders if needed for sections
-
-## Update Registration Form
-- [ ] Simplify Register.jsx: Reduce fields to essentials (email, password, confirmPassword, role, firstName, lastName, skills)
-- [ ] Change Register.jsx to dark theme (bg-dark-900, etc.) to match Home page
-- [ ] Make the form attractive and simple: Use consistent styling with Login.jsx
-
-## Update Login Form
-- [ ] Ensure Login.jsx matches the new Register.jsx style (dark theme, consistent layout)
-- [ ] If needed, adjust layout to be similar but keep it simple for login
-
-## Testing and Verification
-- [ ] Test forms for functionality and responsiveness
-- [ ] Verify images load correctly
-- [ ] Run the app to ensure no errors
+- [x] Standardize auth button and link texts to "Sign In" and "Sign Up" for consistency and professionalism
+  - [x] Update Register.jsx button to "Sign Up" and link to "Sign In here"
+  - [x] Update Login.jsx link to "Sign Up here"
+  - [x] Update Navbar.jsx "Login" to "Sign In" and "Register" to "Sign Up"
+  - [x] Update loading texts to be professional
+- [x] Align Sign In and Sign Up buttons in auth forms in one line
+  - [x] Update Register.jsx to have Sign Up and Sign In buttons side by side
+  - [x] Update Login.jsx to have Sign In and Sign Up buttons side by side
+  - [x] Update button texts to "SignIn" and "SignUp" for one-line display
+- [ ] Test the changes by running the client

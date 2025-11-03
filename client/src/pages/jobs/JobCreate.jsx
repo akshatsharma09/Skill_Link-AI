@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../api';
 
 const JobCreate = () => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const JobCreate = () => {
     
     try {
       setIsLoading(true);
-      await axios.post('/api/jobs', formData);
+      await api.post('/jobs', formData);
       navigate('/jobs');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create job');

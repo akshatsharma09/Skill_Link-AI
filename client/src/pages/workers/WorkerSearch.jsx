@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../api';
 
 const WorkerSearch = () => {
   const [workers, setWorkers] = useState([]);
@@ -17,7 +17,7 @@ const WorkerSearch = () => {
     try {
       setIsLoading(true);
       const params = q ? `?q=${encodeURIComponent(q)}` : '';
-      const res = await axios.get(`/api/workers${params}`);
+      const res = await api.get(`/workers${params}`);
       setWorkers(res.data || []);
       setError(null);
     } catch (err) {
