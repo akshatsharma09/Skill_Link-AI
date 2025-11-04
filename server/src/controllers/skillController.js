@@ -1,4 +1,6 @@
 import Skill from '../models/Skill.js';
+import logger from '../utils/logger.js';
+import { AppError } from '../utils/logger.js';
 import User from '../models/User.js';
 import Job from '../models/Job.js';
 
@@ -27,10 +29,10 @@ export const upsertSkill = async (req, res) => {
   }
 };
 
-// Get all skills with filters
+// Get all skills with filters and pagination
 export const getSkills = async (req, res) => {
   try {
-    const { category, search, sortBy = 'demandMetrics.currentDemand' } = req.query;
+    const { category, search, sortBy = 'demandMetrics.currentDemand', page = 1, limit = 10 } = req.query;
 
     let query = { status: 'active' };
     if (category) {
@@ -40,10 +42,28 @@ export const getSkills = async (req, res) => {
       query.$text = { $search: search };
     }
 
-    const skills = await Skill.find(query).sort({ [sortBy]: -1 });
-    res.json(skills);
+    const options = {
+      page: parseInt(page, 10),
+      limit: parseInt(limit, 10),
+      sort: { [sortBy]: -1 }
+    };
+
+    const result = await Skill.paginate(query, options);
+
+    res.json({
+      success: true,
+      data: result.docs,
+      pagination: {
+        currentPage: result.page,
+        totalPages: result.totalPages,
+        totalSkills: result.totalDocs,
+        hasNext: result.hasNextPage,
+        hasPrev: result.hasPrevPage,
+      }
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    logger.error('Error fetching skills:', error);
+    throw new AppError('Error fetching skills', 500);
   }
 };
 

@@ -1,5 +1,8 @@
+import mongoose from 'mongoose';
 import Job from '../models/Job.js';
 import User from '../models/User.js';
+import logger from '../utils/logger.js';
+import { AppError } from '../utils/logger.js';
 
 // Create a new job
 export const createJob = async (req, res) => {
@@ -14,7 +17,7 @@ export const createJob = async (req, res) => {
   }
 };
 
-// Get all jobs with filters
+// Get all jobs with filters and pagination
 export const getJobs = async (req, res) => {
   try {
     const {
@@ -27,6 +30,8 @@ export const getJobs = async (req, res) => {
       minBudget,
       maxBudget,
       urgency,
+      page = 1,
+      limit = 10,
     } = req.query;
 
     let query = { status };
@@ -72,13 +77,32 @@ export const getJobs = async (req, res) => {
       query.urgency = urgency;
     }
 
-    const jobs = await Job.find(query)
-      .populate('businessId', 'profile.firstName profile.lastName businessDetails.businessName')
-      .sort({ createdAt: -1 });
+    const options = {
+      page: parseInt(page, 10),
+      limit: parseInt(limit, 10),
+      sort: { createdAt: -1 },
+      populate: {
+        path: 'businessId',
+        select: 'profile.firstName profile.lastName businessDetails.businessName'
+      }
+    };
 
-    res.json(jobs);
+    const result = await Job.paginate(query, options);
+
+    res.json({
+      success: true,
+      data: result.docs,
+      pagination: {
+        currentPage: result.page,
+        totalPages: result.totalPages,
+        totalJobs: result.totalDocs,
+        hasNext: result.hasNextPage,
+        hasPrev: result.hasPrevPage,
+      }
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    logger.error('Error fetching jobs:', error);
+    throw new AppError('Error fetching jobs', 500);
   }
 };
 

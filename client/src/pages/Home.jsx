@@ -85,58 +85,56 @@ const Home = () => {
       </div>
 
       {/* Hero section with enhanced animations */}
-      <div className="relative pt-14" ref={heroRef}>
+      <div className="relative pt-8" ref={heroRef}>
         <div className="py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
               <div className="lg:flex lg:items-center lg:gap-12">
                 <div className="lg:flex-1 mx-auto max-w-2xl text-center lg:text-left animate-fade-in-up">
-                  <div className="mb-6">
-                    <SparklesIcon className="h-12 w-12 text-primary-400 animate-pulse mx-auto lg:mx-0" />
-                  </div>
-                  <h1 className="text-4xl font-bold tracking-tight text-dark-100 sm:text-6xl lg:text-7xl">
-                    <span className="gradient-text animate-gradient-x">
+                  <h1 className="text-4xl font-bold tracking-tight text-dark-100 sm:text-6xl lg:text-7xl mt-0 animate-slide-in-left" style={{ animationDelay: '0.1s' }}>
+                    <span className="gradient-text animate-gradient-x animate-bounce-gentle">
                       Connect with Skilled
                     </span>
                     <br />
-                    <span className="text-dark-200">Professionals & Local</span>
+                    <span className="text-dark-200 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>Professionals & Local</span>
                     <br />
-                    <span className="glow-text">Businesses</span>
+                    <span className="glow-text animate-pulse" style={{ animationDelay: '0.3s' }}>Businesses</span>
                   </h1>
-                  <p className="mt-8 text-xl leading-8 text-dark-300 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                  <p className="mt-8 text-xl leading-8 text-dark-300 animate-fade-in-up animate-typing" style={{ animationDelay: '0.4s' }}>
                     SkillLink AI matches skilled workers with local businesses using advanced AI technology.
                     Find the perfect match for your needs, whether you're looking for work or hiring.
                   </p>
-                  <div className="mt-12 flex items-center justify-center gap-x-6 lg:justify-start animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+                  <div className="mt-12 flex items-center justify-center gap-x-6 lg:justify-start animate-fade-in-up animate-stagger" style={{ animationDelay: '0.7s' }}>
                     <Link
                       to="/register"
-                      className="group relative rounded-xl bg-gradient-to-r from-primary-600 to-primary-500 px-6 py-4 text-lg font-semibold text-white shadow-2xl shadow-primary-500/25 hover:shadow-primary-500/40 hover:scale-105 transition-all duration-300 overflow-hidden"
+                      className="group relative rounded-xl bg-gradient-to-r from-primary-600 to-primary-500 px-6 py-4 text-lg font-semibold text-white shadow-2xl shadow-primary-500/25 hover:shadow-primary-500/50 hover:scale-110 hover:rotate-1 transition-all duration-500 overflow-hidden animate-pulse-glow"
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         Get Started
-                        <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300" />
                       </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-primary-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-shimmer" />
                       <div className="absolute inset-0 animate-shimmer opacity-20" />
                     </Link>
                     <Link
                       to="/register"
-                      className="group text-lg font-semibold leading-6 text-dark-200 hover:text-primary-400 transition-all duration-300 flex items-center gap-2 hover:translate-x-2"
+                      className="group text-lg font-semibold leading-6 text-dark-200 hover:text-primary-400 transition-all duration-500 flex items-center gap-2 hover:translate-x-3 hover:scale-105 animate-fade-in-right"
                     >
                       Learn more
-                      <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-2 group-hover:rotate-12 transition-all duration-300" />
                     </Link>
                   </div>
                 </div>
 
-                <div className="hidden lg:block lg:flex-1 animate-slide-in-right" style={{ animationDelay: '0.8s' }}>
-                  <div className="relative">
+                <div className="hidden lg:block lg:flex-1 animate-slide-in-right animate-bounce-in" style={{ animationDelay: '0.8s' }}>
+                  <div className="relative group">
                     <img
                       src="/hero-illustration.svg"
                       alt="Hero illustration"
-                      className="rounded-2xl shadow-2xl max-w-full hover-lift animate-float-gentle"
+                      className="rounded-2xl shadow-2xl max-w-full hover-lift animate-float-gentle group-hover:scale-105 group-hover:rotate-2 transition-all duration-700"
                     />
-                    <div className="absolute -inset-4 bg-gradient-to-r from-primary-500/20 to-accent-500/20 rounded-2xl blur-xl animate-pulse" />
+                    <div className="absolute -inset-4 bg-gradient-to-r from-primary-500/20 to-accent-500/20 rounded-2xl blur-xl animate-pulse group-hover:animate-spin-slow" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/10 rounded-2xl animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                 </div>
               </div>
@@ -149,13 +147,13 @@ const Home = () => {
       <div className="py-24 sm:py-32 bg-gradient-to-b from-dark-800 to-dark-900 relative" ref={featuresRef}>
         <div className="absolute inset-0 bg-gradient-to-r from-primary-900/10 via-transparent to-accent-900/10" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
-          <div className="mx-auto max-w-2xl lg:text-center animate-fade-in-up">
-            <h2 className="text-base font-semibold leading-7 text-primary-400 animate-pulse">Fast & Efficient</h2>
-            <p className="mt-4 text-4xl font-bold tracking-tight text-dark-100 sm:text-5xl">
+          <div className="mx-auto max-w-2xl lg:text-center animate-fade-in-up animate-zoom-in" style={{ animationDelay: '0.2s' }}>
+            <h2 className="text-base font-semibold leading-7 text-primary-400 animate-pulse animate-bounce-gentle">Fast & Efficient</h2>
+            <p className="mt-4 text-4xl font-bold tracking-tight text-dark-100 sm:text-5xl animate-slide-in-up" style={{ animationDelay: '0.4s' }}>
               Everything you need to
-              <span className="gradient-text animate-gradient-x block">connect and grow</span>
+              <span className="gradient-text animate-gradient-x animate-wiggle block">connect and grow</span>
             </p>
-            <p className="mt-8 text-xl leading-8 text-dark-300">
+            <p className="mt-8 text-xl leading-8 text-dark-300 animate-fade-in-up animate-typing" style={{ animationDelay: '0.6s' }}>
               Our AI-powered platform makes it easy to find work or hire skilled professionals in your area.
             </p>
           </div>
@@ -197,34 +195,34 @@ const Home = () => {
         <div className="absolute inset-x-0 top-1/2 -z-10 -translate-y-1/2 transform-gpu overflow-hidden opacity-30 blur-3xl">
           <div className="ml-[max(50%,38rem)] aspect-[1313/771] w-[82.0625rem] bg-gradient-to-tr from-primary-500/30 to-accent-500/30 animate-pulse" />
         </div>
-        <div className="mx-auto max-w-2xl text-center animate-fade-in-up">
-          <h2 className="text-4xl font-bold tracking-tight text-dark-100 sm:text-5xl mb-6">
+        <div className="mx-auto max-w-2xl text-center animate-fade-in-up animate-zoom-in" style={{ animationDelay: '0.2s' }}>
+          <h2 className="text-4xl font-bold tracking-tight text-dark-100 sm:text-5xl mb-6 animate-slide-in-up" style={{ animationDelay: '0.4s' }}>
             Ready to get started?
             <br />
-            <span className="gradient-text animate-gradient-x">Join SkillLink AI today.</span>
+            <span className="gradient-text animate-gradient-x animate-bounce-gentle">Join SkillLink AI today.</span>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-xl leading-8 text-dark-300 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          <p className="mx-auto mt-6 max-w-xl text-xl leading-8 text-dark-300 animate-fade-in-up animate-typing" style={{ animationDelay: '0.6s' }}>
             Whether you're a skilled professional looking for work or a business needing talent,
             SkillLink AI has you covered.
           </p>
-          <div className="mt-12 flex items-center justify-center gap-x-6 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+          <div className="mt-12 flex items-center justify-center gap-x-6 animate-fade-in-up animate-stagger" style={{ animationDelay: '0.8s' }}>
             <Link
               to="/register"
-              className="group relative rounded-xl bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 px-8 py-4 text-lg font-semibold text-white shadow-2xl shadow-primary-500/25 hover:shadow-primary-500/40 hover:scale-105 transition-all duration-300 overflow-hidden"
+              className="group relative rounded-xl bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 px-8 py-4 text-lg font-semibold text-white shadow-2xl shadow-primary-500/25 hover:shadow-primary-500/50 hover:scale-110 hover:rotate-1 transition-all duration-500 overflow-hidden animate-pulse-glow"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Create an account
-                <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-2 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-accent-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-shimmer" />
               <div className="absolute inset-0 animate-shimmer opacity-20" />
             </Link>
             <Link
               to="/register"
-              className="group text-lg font-semibold leading-6 text-dark-200 hover:text-primary-400 transition-all duration-300 flex items-center gap-2 hover:translate-x-2"
+              className="group text-lg font-semibold leading-6 text-dark-200 hover:text-primary-400 transition-all duration-500 flex items-center gap-2 hover:translate-x-3 hover:scale-105 animate-fade-in-right"
             >
               Contact us
-              <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRightIcon className="h-5 w-5 group-hover:translate-x-2 group-hover:rotate-12 transition-all duration-300" />
             </Link>
           </div>
         </div>
