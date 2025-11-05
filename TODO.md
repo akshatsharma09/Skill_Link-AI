@@ -1,11 +1,11 @@
-# Backend Updates for SkillLink AI
+# Backend Updates for SkillLink AI (Phase 1)
 
 ## Task 1: Security Enhancements
 - [x] Install security dependencies (joi, express-rate-limit, helmet)
 - [x] Add input validation middleware using joi for all endpoints
 - [x] Implement rate limiting on auth and job application routes
 - [x] Add helmet middleware for security headers
-- [ ] Add password reset functionality with secure tokens
+- [x] Add password reset functionality with secure tokens
 - [ ] Enhance file upload security with multer validation
 
 ## Task 2: Performance & Scalability
@@ -32,8 +32,27 @@
 - [ ] Implement bulk operations for jobs
 
 ## Testing & Validation
+- [ ] Add basic unit/integration tests for auth and jobs
 - [ ] Test all endpoints with curl for functionality
 - [ ] Verify security improvements (rate limiting, headers)
 - [ ] Performance testing with pagination and compression
 - [ ] Error handling validation
 - [ ] Update README with new API documentation
+
+# Frontend Enhancements (Phase 2)
+
+## UI/UX Improvements
+- [ ] Add loading states and error handling to components
+- [ ] Implement dark mode toggle
+- [ ] Enhance mobile responsiveness
+
+## New Components & Features
+- [ ] Create chat/messaging component for worker-business communication
+- [ ] Add rating/review component for jobs/workers
+- [ ] Enhance search/filter UI with advanced options
+- [ ] Integrate WebSockets for real-time notifications and updates
+- [ ] Build admin dashboard with analytics charts
+
+## Accessibility & Quality
+- [ ] Add ARIA labels, keyboard navigation, and screen reader support
+- [ ] Add basic E2E tests with Cypress

@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 import User from '../models/User.js';
 import logger from '../utils/logger.js';
 import { AppError } from '../utils/logger.js';
@@ -106,6 +108,69 @@ export const updateProfile = async (req, res) => {
   }
 };
 
+// Forgot password - send reset email
+export const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Generate reset token
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+
+    // Set token and expiry (1 hour)
+    user.resetPasswordToken = hashedToken;
+    user.resetPasswordExpires = Date.now() + 60 * 60 * 1000; // 1 hour
+    await user.save();
+
+    // Send email (placeholder - integrate with nodemailer)
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+    logger.info(`Password reset requested for ${email}. Reset URL: ${resetUrl}`);
+
+    res.json({ message: 'Password reset email sent' });
+  } catch (error) {
+    logger.error('Forgot password error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// Reset password
+export const resetPassword = async (req, res) => {
+  try {
+    const { token, password } = req.body;
+
+    // Hash the token to compare with stored hash
+    const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
+    const user = await User.findOne({
+      resetPasswordToken: hashedToken,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid or expired token' });
+    }
+
+    // Hash new password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+
+    // Clear reset token
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    res.json({ message: 'Password reset successful' });
+  } catch (error) {
+    logger.error('Reset password error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -118,4 +183,6 @@ export default {
   login,
   getProfile,
   updateProfile,
+  forgotPassword,
+  resetPassword,
 };

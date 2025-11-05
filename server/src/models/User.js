@@ -88,6 +88,8 @@ const userSchema = new mongoose.Schema({
     radius: { type: Number, default: 25 }, // in kilometers
     language: { type: String, default: 'en' },
   },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
 }, {
   timestamps: true
 });
