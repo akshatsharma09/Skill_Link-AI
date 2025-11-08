@@ -34,6 +34,18 @@ SkillLink AI is a modern platform that connects skilled workers with local busin
 - Rating system
 - Real-time notifications
 
+### Security & Performance
+- Input validation and sanitization (Joi)
+- Rate limiting on authentication and job routes
+- Security headers (Helmet)
+- Password reset with secure tokens
+- Response compression
+- Pagination for large datasets
+- Structured logging (Winston)
+- Custom error handling
+- API versioning (/api/v1/)
+- Health check endpoint
+
 ## Tech Stack
 
 ### Frontend
@@ -50,6 +62,12 @@ SkillLink AI is a modern platform that connects skilled workers with local busin
 - bcrypt for password hashing
 - Multer for file uploads
 - Nodemailer for email notifications
+- Joi for input validation
+- Winston for structured logging
+- Express-rate-limit for rate limiting
+- Helmet for security headers
+- Compression for response compression
+- Mongoose-paginate-v2 for pagination
 
 ## Getting Started
 
@@ -97,6 +115,35 @@ npm run dev
 \`\`\`
 
 ## API Documentation
+
+The API uses versioning with base path `/api/v1/`. All endpoints require authentication unless specified as public.
+
+### Authentication Endpoints
+- `POST /api/v1/auth/register` - Register a new user
+- `POST /api/v1/auth/login` - Login user
+- `POST /api/v1/auth/forgot-password` - Request password reset
+- `POST /api/v1/auth/reset-password` - Reset password with token
+- `GET /api/v1/auth/profile` - Get user profile (protected)
+- `PUT /api/v1/auth/profile` - Update user profile (protected)
+
+### Job Endpoints (All Protected)
+- `POST /api/v1/jobs` - Create a new job
+- `GET /api/v1/jobs` - Get all jobs (with pagination)
+- `GET /api/v1/jobs/matched` - Get AI-matched jobs for user
+- `GET /api/v1/jobs/:id` - Get job by ID
+- `POST /api/v1/jobs/:id/apply` - Apply for a job
+- `PUT /api/v1/jobs/:id/status` - Update job status
+- `PUT /api/v1/jobs/:id/complete` - Mark job as completed
+
+### Skill Endpoints
+- `GET /api/v1/skills` - Get all skills (public)
+- `GET /api/v1/skills/:id` - Get skill by ID (public)
+- `GET /api/v1/skills/:id/recommendations` - Get skill recommendations (protected)
+- `POST /api/v1/skills` - Create/update skill (admin only)
+- `PUT /api/v1/skills/:id/demand-metrics` - Update skill demand metrics (admin only)
+
+### Health Check
+- `GET /health` - Server health status
 
 The API documentation is available at [/api-docs](http://localhost:5000/api-docs) when running the server locally.
 
