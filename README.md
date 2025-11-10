@@ -1,73 +1,68 @@
-# SkillLink AI
+<div align="center">
+  <img src="client/public/hero-illustration.svg" alt="SkillLink AI Logo" width="200" height="200">
+  <h1>SkillLink AI</h1>
+  <p><strong>AI-Powered Skill Marketplace for Gig Workers & Local Businesses</strong></p>
+  <p>Connect skilled workers with local businesses through intelligent matching, secure transactions, and verified profiles.</p>
+  <br>
+  <a href="#license"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License"></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-16+-green.svg" alt="Node.js"></a>
+  <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React-18+-blue.svg" alt="React"></a>
+  <a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-7+-green.svg" alt="MongoDB"></a>
+  <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express.js-4+-black.svg" alt="Express.js"></a>
+</div>
 
-AI-Powered Skill Marketplace for Gig Workers & Local Businesses
+## 📋 Table of Contents
+
+- [🚀 Overview](#-overview)
+- [✨ Features](#-features)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🏁 Getting Started](#-getting-started)
+- [📚 API Documentation](#-api-documentation)
+- [📸 Screenshots](#-screenshots)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [📞 Contact](#-contact)
 
 ## Overview
 
 SkillLink AI is a modern platform that connects skilled workers with local businesses, leveraging AI for optimal matching. The platform facilitates efficient discovery, booking, and management of skilled services while ensuring quality and trust through various verification mechanisms.
 
-## Features
+## ✨ Features
 
-### For Workers
-- AI-powered job matching
-- Skill profile management
-- Real-time availability settings
-- Document verification
-- Rating and review system
-- Earnings tracking
-- Skill development recommendations
+| For Workers | For Businesses | Core Technology | Security & Performance |
+|-------------|----------------|-----------------|-------------------------|
+| 🔍 AI-powered job matching | 🎯 Smart worker matching | 🤖 AI matching engine | ✅ Input validation (Joi) |
+| 👤 Skill profile management | 📝 Job posting & management | 📍 Location-based services | 🛡️ Rate limiting |
+| ⏰ Real-time availability | 🔒 Worker verification status | 💳 Secure payments | 🔐 Security headers (Helmet) |
+| 📄 Document verification | 📅 Real-time booking | 📄 Document verification | 🔑 Password reset tokens |
+| ⭐ Rating & review system | 💰 Payment processing | ⭐ Rating system | 📊 Response compression |
+| 💰 Earnings tracking | 📈 Service quality tracking | 🔔 Real-time notifications | 📄 Pagination |
+| 📚 Skill recommendations | 📊 Business analytics | | 📝 Structured logging (Winston) |
+| | | | 🚨 Custom error handling |
+| | | | 🏷️ API versioning (/api/v1/) |
+| | | | ❤️ Health check endpoint |
 
-### For Businesses
-- Smart worker matching
-- Job posting and management
-- Worker verification status
-- Real-time booking
-- Payment processing
-- Service quality tracking
-- Business analytics
+## 🛠️ Tech Stack
 
-### Core Technology
-- AI matching engine
-- Location-based services
-- Secure payment processing
-- Document verification
-- Rating system
-- Real-time notifications
-
-### Security & Performance
-- Input validation and sanitization (Joi)
-- Rate limiting on authentication and job routes
-- Security headers (Helmet)
-- Password reset with secure tokens
-- Response compression
-- Pagination for large datasets
-- Structured logging (Winston)
-- Custom error handling
-- API versioning (/api/v1/)
-- Health check endpoint
-
-## Tech Stack
-
-### Frontend
-- React (with Vite)
-- React Router for navigation
-- TailwindCSS for styling
-- Axios for API requests
-- Context API for state management
-
-### Backend
-- Node.js with Express
-- MongoDB with Mongoose
-- JWT for authentication
-- bcrypt for password hashing
-- Multer for file uploads
-- Nodemailer for email notifications
-- Joi for input validation
-- Winston for structured logging
-- Express-rate-limit for rate limiting
-- Helmet for security headers
-- Compression for response compression
-- Mongoose-paginate-v2 for pagination
+| Category | Technology | Description |
+|----------|------------|-------------|
+| **Frontend** | React (with Vite) | Modern UI library for building interactive interfaces |
+| | React Router | Declarative routing for React applications |
+| | TailwindCSS | Utility-first CSS framework for rapid styling |
+| | Axios | HTTP client for making API requests |
+| | Context API | State management solution built into React |
+| **Backend** | Node.js with Express | Server-side JavaScript runtime and web framework |
+| | MongoDB with Mongoose | NoSQL database and ODM for data modeling |
+| | JWT | JSON Web Tokens for secure authentication |
+| | bcrypt | Password hashing library for security |
+| | Multer | Middleware for handling file uploads |
+| | Nodemailer | Email sending library for notifications |
+| | Joi | Schema validation for input sanitization |
+| | Winston | Structured logging for better debugging |
+| | Express-rate-limit | Rate limiting middleware for API protection |
+| | Helmet | Security headers middleware |
+| | Compression | Response compression for performance |
+| | Mongoose-paginate-v2 | Pagination plugin for large datasets |
 
 ## Getting Started
 
@@ -80,7 +75,7 @@ SkillLink AI is a modern platform that connects skilled workers with local busin
 
 1. Clone the repository:
 \`\`\`bash
-git clone https://github.com/yourusername/skilllink-ai.git
+git clone https://github.com/akshatsharma09/Skill_Link-AI
 cd skilllink-ai
 \`\`\`
 
@@ -147,19 +142,32 @@ The API uses versioning with base path `/api/v1/`. All endpoints require authent
 
 The API documentation is available at [/api-docs](http://localhost:5000/api-docs) when running the server locally.
 
-## Contributing
+## 📸 Screenshots
 
-1. Fork the repository
-2. Create your feature branch (\`git checkout -b feature/AmazingFeature\`)
-3. Commit your changes (\`git commit -m 'Add some AmazingFeature'\`)
-4. Push to the branch (\`git push origin feature/AmazingFeature\`)
-5. Open a Pull Request
+*Add screenshots of your application here to showcase the UI and features.*
 
-## License
+<!-- Example:
+![Home Page](screenshots/home.png)
+![Dashboard](screenshots/dashboard.png)
+![Job Matching](screenshots/job-matching.png)
+-->
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. 🍴 Fork the repository
+2. 🌿 Create your feature branch (\`git checkout -b feature/AmazingFeature\`)
+3. 💻 Commit your changes (\`git commit -m 'Add some AmazingFeature'\`)
+4. 🚀 Push to the branch (\`git push origin feature/AmazingFeature\`)
+5. 🔄 Open a Pull Request
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
+## 📞 Contact
 
-Your Name - [@yourusername](https://twitter.com/yourusername)
-Project Link: [https://github.com/yourusername/skilllink-ai](https://github.com/yourusername/skilllink-ai)
+**Akshat Sharma** - [@akshatsharma09](https://github.com/akshatsharma09)
+
+Project Link: [https://github.com/akshatsharma09/Skill_Link-AI](https://github.com/akshatsharma09/Skill_Link-AI)
