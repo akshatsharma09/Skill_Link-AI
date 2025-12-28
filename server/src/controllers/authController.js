@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import User from '../models/User.js';
 import logger from '../utils/logger.js';
 import { AppError } from '../utils/logger.js';
+// import firebaseAdmin from '../config/firebase.js'; // Temporarily disabled
 
 // Register new user
 export const register = async (req, res) => {
@@ -178,6 +179,65 @@ const generateToken = (id) => {
   });
 };
 
+// Google OAuth authentication
+export const googleAuth = async (req, res) => {
+  try {
+    if (!firebaseAdmin) {
+      return res.status(500).json({ message: 'Firebase authentication not configured' });
+    }
+
+    const { idToken } = req.body;
+
+    if (!idToken) {
+      return res.status(400).json({ message: 'ID token is required' });
+    }
+
+    // Verify the ID token with Firebase
+    const decodedToken = await firebaseAdmin.auth().verifyIdToken(idToken);
+    const { uid, email, name, picture } = decodedToken;
+
+    // Check if user exists
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      // Create new user
+      user = await User.create({
+        email,
+        profile: {
+          name,
+          avatar: picture,
+        },
+        role: 'freelancer', // Default role
+        isVerified: true, // Google accounts are pre-verified
+      });
+      logger.info(`New user created via Google OAuth: ${email}`);
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { userId: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+
+    logger.info(`Google OAuth login successful for user: ${email}`);
+
+    res.json({
+      message: 'Google authentication successful',
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+        role: user.role,
+        profile: user.profile,
+      },
+    });
+  } catch (error) {
+    logger.error('Google auth error:', error);
+    res.status(500).json({ message: 'Google authentication failed' });
+  }
+};
+
 export default {
   register,
   login,
@@ -185,4 +245,5 @@ export default {
   updateProfile,
   forgotPassword,
   resetPassword,
+  googleAuth,
 };

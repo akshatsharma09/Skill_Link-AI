@@ -18,13 +18,13 @@ const Input = ({
       {label && (
         <label
           htmlFor={id || name}
-          className="block text-sm font-medium text-dark-300"
+          className="block text-sm font-medium text-gray-700 mb-2"
         >
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
-      <div className="mt-1">
+      <div className="relative">
         <input
           type={type}
           id={id || name}
@@ -33,7 +33,7 @@ const Input = ({
           onChange={onChange}
           placeholder={placeholder}
           required={required}
-          className={`block w-full rounded-md border-dark-600 bg-dark-700 text-dark-100 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm ${
+          className={`block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
             error ? 'border-red-300' : ''
           }`}
           {...props}
